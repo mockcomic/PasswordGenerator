@@ -1,27 +1,49 @@
-// Assignment code here
-let passwordLength = prompt("How long would you like your password? (8 - 128 characters)")
-let symbolCheck = prompt("Would you like special characters?").toLowerCase()
-let letterCheck = prompt("Would you like letters characters?").toLowerCase()
-let numberCheck= prompt("Would you like number characters?").toLowerCase()
+function generatePassword() {
+  let passwordLength = prompt("How long would you like your password? (8 - 128 characters)");
+  if (passwordLength < 8 || passwordLength > 128) {
+    window.alert("Please change you password lenght between 8 - 128 characters.");
+    let passwordCheck = false;
+    while(!passwordCheck){
+      passwordLength = prompt("How long would you like your password? (8 - 128 characters)");
+      if(passwordLength >= 8 && passwordLength <= 128){
+        console.log('passed password check')
+        passwordCheck = true;
+      }
+    }
+  }
+  let symbolCheck = confirm("Adding special characters?");
+  let numberCheck = confirm("Adding number characters?");
 
-function generatePassword(passwordLength) {
+
   let password = [];
-  let characters= {
+  password = [];
+  let characters = {
     symbol: "!@#$%^&*()",
     numbers: "123456789",
     letters: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-  }
-  
-  if (symbolCheck == "yes" || symbolCheck == "y" && letterCheck == "yes" || letterCheck == "y" && numberCheck == "yes" || numberCheck == "y") {
-    let characterSet = characters.letters + characters.symbol + characters.letters
+  };
+  if (symbolCheck && numberCheck) {
+    let characterSet = characters.letters + characters.symbol + characters.numbers
     for (let index = 0; index < passwordLength; index++) {
       let value = characterSet.charAt(Math.floor(Math.random() * characterSet.length));
       password.push(value);
     }
-
-  } else {
+  } else if (symbolCheck && !numberCheck) {
+    let characterSet = characters.letters + characters.symbol
     for (let index = 0; index < passwordLength; index++) {
-      let value = characters.letters.charAt(Math.floor(Math.random() * characters.letters.length));
+      let value = characterSet.charAt(Math.floor(Math.random() * characterSet.length));
+      password.push(value);
+    }
+  } else if (!symbolCheck && numberCheck) {
+    let characterSet = characters.letters + characters.numbers
+    for (let index = 0; index < passwordLength; index++) {
+      let value = characterSet.charAt(Math.floor(Math.random() * characterSet.length));
+      password.push(value);
+    }
+  } else {
+    let characterSet = characters.letters
+    for (let index = 0; index < passwordLength; index++) {
+      let value = characterSet.charAt(Math.floor(Math.random() * characterSet.length));
       password.push(value);
     }
   }
@@ -32,7 +54,7 @@ let generateBtn = document.querySelector("#generate");
 
 
 function writePassword() {
-  let password = generatePassword(passwordLength);
+  let password = generatePassword();
   let passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
