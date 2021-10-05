@@ -1,2 +1,1 @@
-# Week3Challenge-PasswordGenerator
- 
+# Password Generator Starter Code
