@@ -1,4 +1,6 @@
 # Password Generator Starter Code 
+A password generator I made for the UC Berkeley bootcamp. Feel free to use the passwords for your own accounts!
+
 # User Story
 AS AN employee with access to sensitive data <br>
 I WANT to randomly generate a password that meets certain criteria <br>
