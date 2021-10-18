@@ -1,4 +1,3 @@
-# Password Generator Starter Code 
 A password generator I made for the UC Berkeley bootcamp. Feel free to use the passwords for your own accounts!
 
 # User Story
